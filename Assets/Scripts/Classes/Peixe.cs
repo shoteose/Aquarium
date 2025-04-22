@@ -101,7 +101,7 @@ public class Peixe : MonoBehaviour, IPeixe
     private Vector3 CalcularCoesao(GameObject[] vizinhos)
     {
         Vector3 centro = Vector3.zero;
-        int groupSize = 0;
+        int tamanhoDoGrupo = 0;
 
         foreach (GameObject go in vizinhos)
         {
@@ -111,14 +111,14 @@ public class Peixe : MonoBehaviour, IPeixe
                 if (distancia <= _myManager.distanciaVizinho)
                 {
                     centro += go.transform.position;
-                    groupSize++;
+                    tamanhoDoGrupo++;
                 }
             }
         }
 
-        if (groupSize > 0)
+        if (tamanhoDoGrupo > 0)
         {
-            centro = centro / groupSize + (_myManager.goalPos - transform.position);
+            centro = centro / tamanhoDoGrupo + (_myManager.goalPos - transform.position);
         }
 
         return centro;
@@ -146,7 +146,7 @@ public class Peixe : MonoBehaviour, IPeixe
     private float CalcularAlinhamento(GameObject[] vizinhos)
     {
         float velocidadeTotal = 0.01f;
-        int groupSize = 0;
+        int tamanhoDoGrupo = 0;
 
         foreach (GameObject go in vizinhos)
         {
@@ -157,14 +157,14 @@ public class Peixe : MonoBehaviour, IPeixe
                 {
                     Peixe outroPeixe = go.GetComponent<Peixe>();
                     velocidadeTotal += outroPeixe.Velocidade;
-                    groupSize++;
+                    tamanhoDoGrupo++;
                 }
             }
         }
 
-        if (groupSize > 0)
+        if (tamanhoDoGrupo > 0)
         {
-            return velocidadeTotal / groupSize;
+            return velocidadeTotal / tamanhoDoGrupo;
         }
 
         return Velocidade;
