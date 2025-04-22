@@ -1257,11 +1257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c35ab1ca0d106438788019bfa0c98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  fastMovementSpeed: 100
-  freeLookSensitivity: 3
-  zoomSensitivity: 10
-  fastZoomSensitivity: 50
+  velocidade: 10
+  sensibilidade: 3
+  sensibilidadeZoom: 10
 --- !u!1 &355029542
 GameObject:
   m_ObjectHideFlags: 0

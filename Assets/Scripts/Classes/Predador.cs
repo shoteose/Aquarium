@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Predador : MonoBehaviour, IPeixe
+public class Predador : MonoBehaviour
 {
    
     [SerializeField] private Vector3 limitesNado = new Vector3(10f, 10f, 10f);
@@ -109,12 +109,12 @@ public class Predador : MonoBehaviour, IPeixe
 
     private GameObject ProcurarPresa()
     {
-        Peixe[] todosOsPeixes = FindObjectsByType<Peixe>(FindObjectsSortMode.None);
+        PeixeBase[] todosOsPeixes = FindObjectsByType<PeixeBase>(FindObjectsSortMode.None);
 
         GameObject peixeMaisProximo = null;
         float distanciaMinima = Mathf.Infinity;
 
-        foreach (Peixe peixe in todosOsPeixes)
+        foreach (PeixeBase peixe in todosOsPeixes)
         {
             float distancia = Vector3.Distance(transform.position, peixe.transform.position);
             if (distancia < distanciaMinima)

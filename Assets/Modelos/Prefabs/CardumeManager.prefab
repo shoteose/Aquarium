@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prebabPeixe: {fileID: 6539048127166332492, guid: 6b15c79e0a0fcf34e99ee7bfa9f19b3c, type: 3}
+  prefabPeixeTurbo: {fileID: 6539048127166332492, guid: 384db82f4bf13bd4bacdded00c2614e1, type: 3}
   numFish: 5
   limitesNado: {x: 10, y: 10, z: 10}
-  goalPos: {x: 0, y: 0, z: 0}
+  posicaoAlvo: {x: 0, y: 0, z: 0}
   pesoCoesao: 1
   pesoSeparacao: 1
   pesoAlinhamento: 1

@@ -4,6 +4,7 @@ public class CardumeManager : MonoBehaviour
 {
     [Header("Prefab")]
     [SerializeField] private GameObject prebabPeixe;
+    [SerializeField] private GameObject prefabPeixeTurbo;
 
     [Header("Número de Peixes")]
     [SerializeField] private int numFish = 20;
@@ -13,7 +14,7 @@ public class CardumeManager : MonoBehaviour
 
     [Header("Limites")]
     public Vector3 limitesNado = new Vector3(10f, 10f, 10f);
-    public Vector3 goalPos;
+    public Vector3 posicaoAlvo;
 
     [Header("Pesos do Flocking")]
     public float pesoCoesao = 1.0f;
@@ -38,6 +39,11 @@ public class CardumeManager : MonoBehaviour
     {
         todosPeixes = new GameObject[numFish];
 
+        GameObject tipoPeixe = prebabPeixe;
+        if (Random.Range(0f, 1f) > 0.5f) tipoPeixe = prefabPeixeTurbo;
+
+        if (tipoPeixe == prefabPeixeTurbo) Debug.Log("Turbo");
+
         for (int i = 0; i < numFish; ++i)
         {
             Vector3 pos = transform.position + new Vector3(
@@ -45,10 +51,10 @@ public class CardumeManager : MonoBehaviour
                 Random.Range(-limitesNado.y, limitesNado.y),
                 Random.Range(-limitesNado.z, limitesNado.z));
 
-            todosPeixes[i] = Instantiate(prebabPeixe, pos, Quaternion.identity, transform);
+            todosPeixes[i] = Instantiate(tipoPeixe, pos, Quaternion.identity, transform);
         }
 
-        goalPos = transform.position;
+        posicaoAlvo = transform.position;
     }
 
     void Update()
@@ -61,7 +67,7 @@ public class CardumeManager : MonoBehaviour
 
         if (Random.Range(0, 100) < 10)
         {
-            goalPos = transform.position + new Vector3(
+            posicaoAlvo = transform.position + new Vector3(
                 Random.Range(-limitesNado.x, limitesNado.x),
                 Random.Range(-limitesNado.y, limitesNado.y),
                 Random.Range(-limitesNado.z, limitesNado.z));
