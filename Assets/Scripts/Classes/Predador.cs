@@ -55,29 +55,31 @@ public class Predador : MonoBehaviour
             return;
         }
 
-        
-        if (estadoFome == EstadoFome.Fome && alvo == null)
-        {
-            alvo = ProcurarPresa();
-        }
 
-        
-        if (alvo != null && TemLinhaDeVisao(alvo))
+        if (estadoFome == EstadoFome.Fome)
         {
-            Vector3 direcao = (alvo.transform.position - transform.position).normalized;
-            transform.position += direcao * Velocidade * Time.deltaTime;
-
-            if (direcao != Vector3.zero)
+            if (alvo == null)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direcao), Time.deltaTime * 5f);
+                alvo = ProcurarPresa();
             }
 
-            if (Vector3.Distance(transform.position, alvo.transform.position) < 1.5f)
+            if (alvo != null && TemLinhaDeVisao(alvo))
             {
-                Debug.Log("comi");
-                Destroy(alvo);
-                alvo = null;
-                estadoFome = EstadoFome.Cheio;
+                Vector3 direcao = (alvo.transform.position - transform.position).normalized;
+                transform.position += direcao * Velocidade * Time.deltaTime;
+
+                if (direcao != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direcao), Time.deltaTime * 5f);
+                }
+
+                if (Vector3.Distance(transform.position, alvo.transform.position) < 1.5f)
+                {
+                    Debug.Log("comi");
+                    Destroy(alvo);
+                    alvo = null;
+                    estadoFome = EstadoFome.Cheio;
+                }
             }
         }
     }

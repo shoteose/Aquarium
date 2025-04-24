@@ -32,8 +32,7 @@ public class CardumeManager : MonoBehaviour
     [Header("Alvo do Cardume")]
     public GameObject alvoDoGrupo;
 
-
-    public GameObject[] getTodosPeixes() {  return todosPeixes; }
+    public GameObject[] getTodosPeixes() { return todosPeixes; }
 
     void Start()
     {
